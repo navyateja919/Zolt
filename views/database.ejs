@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" type="text/javascript"></script>
+    <title>Database</title>
+</head>
+<body>
+<div class="product-input">
+    <form method="post" action="/data-input">
+        <label for="product-name">product name:</label>
+        <input type="text" name="product_name" required>
+        <label for="product-price">product price:</label>
+        <input type="number" name="product_price" min="0" step="any" required>
+        <label for="product-img">product image:</label>
+        <input type="text" name="product_image" required>
+        <input type="submit">
+    </form>  
+</div>
+
+<div class="edit-row-data">
+    <form method="post" action="/data-edit">
+        <label for="product-id">product id:</label>
+        <input type="number" name="product_id" required>
+        <label for="product-name">product name:</label>
+        <input type="text" name="product_name" required>
+        <label for="product-price">product price:</label>
+        <input type="number" name="product_price" min="0" step="any" required>
+        <label for="product-img">product image:</label>
+        <input type="text" name="product_image" required>
+        <input type="submit">
+    </form>    
+</div>
+
+</body>
+</html>

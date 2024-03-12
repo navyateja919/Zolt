@@ -1,0 +1,37 @@
+<%- include("partials/header-products.ejs") %>
+    <!-- Your page content goes here -->
+    <div class="product-page">
+        <div class="product-page-header">
+            <div class="tog-btn-bg">
+                <span class="8mg tog-active">8mg</span>
+                <span class="15mg">15mg</span>
+            </div>
+        </div>
+        <div class="products-list">        
+            <% products.forEach(function product (value) { %>
+                    <div class="item">
+                        <div class="product-img">
+                            <h4><%= value.product_name %></h4>
+                            <img src="images/products/<%= value.product_image %>" alt="">
+                            <div class="product-details">
+                                <h5>Price: <span>$<%= value.product_price %></span></h5>
+                                <span class="spn">8mg</span>
+                                
+                                
+                            </div>     
+                            <form method="post" action="/add-cart">
+                                <input type="hidden" name="product_id" value="<%= value.id %>">
+                                <input type="hidden" name="product_name" value="<%= value.product_name %>">
+                                <input type="hidden" name="product_price" value="<%= value.product_price %>">
+                                <input type="submit" class="btn btn-warning" value="Add To Cart">
+                            </form>    
+                        </div>
+                                         
+                    </div>
+            <% }) %>
+            
+        </div>
+    </div>
+   
+
+<%- include("partials/footer-products.ejs") %>    

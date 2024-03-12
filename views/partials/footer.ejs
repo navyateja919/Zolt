@@ -1,0 +1,15 @@
+<script>
+// Get all the menu items
+const bodyId = $("body").attr("id");    
+const menuItems = document.querySelectorAll("nav a");
+
+// Loop through each menu item and compare its href with the current URL
+menuItems.forEach(function (menuItem) {
+    if (menuItem.dataset.active === bodyId) {
+        menuItem.classList.add("active-nav");
+    }
+});
+</script>
+
+</body>
+</html>

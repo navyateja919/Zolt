@@ -1,0 +1,121 @@
+
+<div class="cart-tab">
+    <div class="card">
+        <div class="card-header"><h3>CART</h3></div>
+        <div class="card-body">
+            <table class="table" cellspacing="30">
+                <tr>
+                    <th align="left">Item Name</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Remove</th>
+                </tr>
+                 
+                <% if (cart.length > 0) { %>
+                   <% let total = 0; %>
+                   <% let totalQuantity = 0; %>                   
+                   <% cart.forEach(item => { %>
+                    <tr>
+                        <td align="left"><%= item.product_name %></td>
+                        <td><%= item.quantity %></td>
+                        <td><%= item.product_price.toLocaleString("en", { minimumFractionDigits: 2 }) %></td>
+                        <td></td>
+                    </tr>
+                    <% totalQuantity += parseFloat(item.quantity) %> 
+                    <% total += parseFloat(item.quantity) * parseFloat(item.product_price.toLocaleString("en", { minimumFractionDigits: 2 })) %>                       
+                   <% }); %>
+                    <tr>
+                        <td colspan="1" align="left"><b>Total</b></td>                        
+                        <td id="total-quantity"><%= totalQuantity%></td>
+                        <td><%= total.toLocaleString("en", { minimumFractionDigits: 2 })%></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                <% } else { %>
+                    <tr>
+                        <td colspan="5" align="center">Cart Empty!</td>
+                    </tr>
+                <% } %>
+            </table>
+        </div>
+        <div class="close-pay">
+            <span class="pay">PAY</span>
+            <span class="close">CLOSE</span>
+          </div>
+    </div>
+</div>
+<button class="open-button" onclick="animateChat()"><i class='bx bxs-message-dots'></i>Chat assistance</button>
+
+<div class="chat-popup" id="myForm">
+    <div class="chat-header">
+        <h1>Chat assistance</h1>
+        <button type="button" class="btn-close" onclick="closeForm()"><i class='bx bx-x'></i></button>
+    </div>
+    <div class="message-area">
+        <div id="msg-area" class="msg-txt">
+          <p>Welcome to ZOLT!</p><br>
+        </div>
+    </div>
+
+    <div class="input-chat">
+        <input type="text" placeholder="Your message..." class="text-cursor" required>
+        <button type="submit" class="btn-chat"><i class='bx bxs-send' ></i></button>
+    </div>
+    
+</div>
+
+
+<script>
+const header = document.getElementById("header");
+const sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.scrollY >= sticky) {
+    header.classList.add("sticky")
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+
+// Get all the menu items
+const bodyId = $("body").attr("id");
+const menuItems = document.querySelectorAll("nav a");
+
+// Loop through each menu item and compare its href with the current URL
+menuItems.forEach(function (menuItem) {
+    if (menuItem.dataset.active === bodyId) {
+        menuItem.classList.add("active-nav");
+    }
+});
+
+// cart-tab toggle
+
+$(".shopping-cart").click(function(){
+    $(".cart-tab").toggleClass("cart-active");
+});
+
+$(".close").click(function(){
+    $(".cart-tab").toggleClass("cart-active");
+});
+
+// cart total
+const totalQuantityDom = $("#total-quantity")[0].innerHTML;
+document.querySelector(".total-quantity").innerHTML = totalQuantityDom;
+
+// chat bot
+
+function closeForm() {
+  document.getElementById("myForm").classList.remove("chat-popup-active");
+}
+
+// animation chat bot
+
+function animateChat () {
+    document.getElementById("myForm").classList.add("chat-popup-active");
+    document.getElementById("msg-area").classList.add("onClick-chat-animation");
+}
+
+    
+</script>
+</body>
+</html>
